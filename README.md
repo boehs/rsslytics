@@ -1,3 +1,5 @@
+**RSSLytics** is a little bit of code I use for collecting analytics on my RSS feed. It's an incredibly creative name. When I get around to it I'll publish some code I use for analysis as well, but this should do for now.
+
 ```
 CREATE TABLE IF NOT EXISTS log (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
