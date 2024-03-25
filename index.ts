@@ -63,8 +63,8 @@ export function countRss(userAgent: string, feedUrl: string, ip: string) {
 
   let readerName =
     readers.find((r) => userAgent.toLowerCase().includes(r)) || null;
-  readerName =
-    (replacements[readerName] ? replacements[readerName] : readerName) || null;
+  // @ts-ignore
+  readerName = replacements[readerName] || readerName || null;
 
   let version =
     readers.filter((r) =>
