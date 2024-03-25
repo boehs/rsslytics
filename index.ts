@@ -55,10 +55,13 @@ export function countRss(userAgent: string, feedUrl: string, ip: string) {
     readers.find((r) => userAgent.toLowerCase().includes(r)) || null;
 
   let version =
-    readers.filter((r) => userAgent.match(new RegExp(r + "\\/[^;) ]*")))[0] ||
-    null;
+    readers.filter((r) =>
+      userAgent.toLowerCase().match(new RegExp(r + "\\/[^;) ]*"))
+    )[0] || null;
   if (version)
-    version = userAgent.match(new RegExp(version + "\\/[^;) ]*"))![1];
+    version = userAgent
+      .toLowerCase()
+      .match(new RegExp(version + "\\/[^;) ]*"))![1];
 
   let entry: LogEntry = {
     date: Date.now(),
