@@ -40,7 +40,17 @@ const readers = [
   "netnewswire",
   "freshrss",
   "theoldreader",
+  "rss-parrot-bot",
+  "nextcloud-news",
+  "blogtrottr",
+  "feedmail.org",
+  "spacecowboys android rss reader",
 ];
+
+let replacements = {
+  "spacecowboys android rss reader": "feeder",
+  "rss-parrot-bot": "rss parrot",
+};
 
 export function countRss(userAgent: string, feedUrl: string, ip: string) {
   let subscriberCountT = userAgent.match(/([0-9]+) subscriber/);
@@ -53,15 +63,17 @@ export function countRss(userAgent: string, feedUrl: string, ip: string) {
 
   let readerName =
     readers.find((r) => userAgent.toLowerCase().includes(r)) || null;
+  readerName =
+    (replacements[readerName] ? replacements[readerName] : readerName) || null;
 
   let version =
     readers.filter((r) =>
-      userAgent.toLowerCase().match(new RegExp(r + "\\/[^;) ]*"))
+      userAgent.toLowerCase().match(new RegExp(r + " ?\\/ ?([^;) ]*)"))
     )[0] || null;
   if (version)
     version = userAgent
       .toLowerCase()
-      .match(new RegExp(version + "\\/[^;) ]*"))![1];
+      .match(new RegExp(version + " ?\\/ ?([^;) ]*)"))![1];
 
   let entry: LogEntry = {
     date: Date.now(),

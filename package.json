@@ -1,6 +1,6 @@
 {
   "name": "rsslytics",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Analytics for RSS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
