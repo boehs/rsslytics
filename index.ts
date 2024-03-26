@@ -33,7 +33,6 @@ const readers = [
   "feedbin",
   "feedly",
   "newsblur",
-  "miniflux",
   "bazqux",
   "tiny tiny rss",
   "reeder",
@@ -45,6 +44,9 @@ const readers = [
   "blogtrottr",
   "feedmail.org",
   "spacecowboys android rss reader",
+  "akregator",
+  "simplepie",
+  "readyou",
 ];
 
 let replacements = {
