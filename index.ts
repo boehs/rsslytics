@@ -47,6 +47,7 @@ const readers = [
   "akregator",
   "simplepie",
   "readyou",
+  "liferea",
 ];
 
 let replacements = {
@@ -54,7 +55,17 @@ let replacements = {
   "rss-parrot-bot": "rss parrot",
 };
 
+let excludes = ["bytespider", "petalbot", "amazonbot", "ariadne", "bingbot"];
+let excludesUrl = ["wp-includes/wlwmanifest.xml"];
+
 export function countRss(userAgent: string, feedUrl: string, ip: string) {
+  if (
+    excludes.find((r) => userAgent.toLowerCase().includes(r)) != undefined ||
+    excludesUrl.find((r) => feedUrl.toLowerCase().includes(r)) != undefined
+  ) {
+    return;
+  }
+
   let subscriberCountT = userAgent.match(/([0-9]+) subscriber/);
   let subscriberCount = subscriberCountT
     ? Number(subscriberCountT[1])
